@@ -7,7 +7,7 @@ void main(List<String> args) {
       debugShowCheckedModeBanner: false,
       title: "Cantina do Campus",
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
       home: Scaffold(body: HomePage()),
     ),

@@ -1,3 +1,4 @@
+import 'package:cantina/widgets/food_card.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
@@ -66,6 +67,14 @@ class MenuPage extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            child: FoodCard(),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: FoodCard(),
           ),
         ],
       ),
