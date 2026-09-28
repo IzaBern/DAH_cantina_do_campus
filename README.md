@@ -4,8 +4,8 @@
 * **Instituto:** IF Goiano - Campus Rio Verde
 * **Disciplina:** Desenvolvimento de Aplicações Híbridas 
 ---
-<br>
 
 ## Exercício 01 - Cantina do Campus
 
 - Instalação das dependências: `mobx`, `flutter_mobx`, `mobx_codegen`, `build_runner`, `get_it`
+- Design da página de cardápio
