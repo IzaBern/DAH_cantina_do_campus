@@ -8,23 +8,27 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent[100],
+        backgroundColor: Colors.amber[100],
         toolbarHeight: 80,
         title: Text(
           "Cantina do Campus",
-          style: TextStyle(fontWeight: FontWeight(600)),
+          style: TextStyle(
+            fontWeight: FontWeight(700),
+            color: Colors.deepOrange,
+          ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
             child: Badge.count(
               count: 10,
+              backgroundColor: Colors.deepOrange,
               child: IconButton(
                 onPressed: () {},
                 icon: Icon(
                   Icons.receipt_long_sharp,
                   size: 35,
-                  color: Colors.black,
+                  color: Colors.deepOrange,
                 ),
               ),
             ),
@@ -38,7 +42,7 @@ class MenuPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Card(
-                color: Colors.orangeAccent,
+                color: Colors.deepOrange,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -46,7 +50,8 @@ class MenuPage extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Row(
                     children: [
-                      Icon(Icons.flatware, size: 50),
+                      SizedBox(width: 20),
+                      Icon(Icons.flatware, size: 50, color: Colors.white),
                       SizedBox(width: 30),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -55,11 +60,15 @@ class MenuPage extends StatelessWidget {
                           Text(
                             "Cardápio de hoje",
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight(600),
                             ),
                           ),
-                          Text("Escolha seus itens e monte o pedido."),
+                          Text(
+                            "Escolha seus itens e monte o pedido.",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ],
                       ),
                     ],

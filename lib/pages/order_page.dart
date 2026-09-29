@@ -14,7 +14,7 @@ class OrderPage extends StatelessWidget {
             fontWeight: FontWeight(700),
           ),
         ),
-        backgroundColor: Colors.orangeAccent[100],
+        backgroundColor: Colors.amber[100],
         toolbarHeight: 80,
         centerTitle: true,
         actions: [

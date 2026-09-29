@@ -107,7 +107,11 @@ class FoodCard extends StatelessWidget {
               children: [
                 Text(
                   "R\$ 18.00",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight(700)),
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight(700),
+                    color: Colors.deepOrange,
+                  ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
