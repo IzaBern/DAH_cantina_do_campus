@@ -25,6 +25,7 @@ class MenuPage extends StatelessWidget {
               backgroundColor: Colors.deepOrange,
               child: IconButton(
                 onPressed: () {},
+                tooltip: "Ir para Meu Pedido",
                 icon: Icon(
                   Icons.receipt_long_sharp,
                   size: 35,

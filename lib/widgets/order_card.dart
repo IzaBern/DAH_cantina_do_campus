@@ -59,7 +59,15 @@ class OrderCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 15),
-                Icon(Icons.delete_outline, size: 35, color: Colors.deepOrange),
+                IconButton(
+                  onPressed: () {},
+                  tooltip: "Excluir item",
+                  icon: Icon(
+                    Icons.delete_outline,
+                    size: 35,
+                    color: Colors.deepOrange,
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -101,6 +109,7 @@ class OrderCard extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {},
+                      tooltip: "Excluir um",
                       icon: Icon(
                         Icons.remove_circle_outline,
                         color: Colors.deepOrange,
@@ -116,6 +125,7 @@ class OrderCard extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {},
+                      tooltip: "Adicionar um",
                       icon: Icon(
                         Icons.add_circle_outline,
                         color: Colors.deepOrange,

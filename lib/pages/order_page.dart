@@ -22,6 +22,7 @@ class OrderPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
+            tooltip: "Excluir todos os pedidos",
             icon: Icon(
               Icons.delete_sweep_outlined,
               size: 35,
@@ -31,6 +32,7 @@ class OrderPage extends StatelessWidget {
         ],
         leading: IconButton(
           onPressed: () {},
+          tooltip: "Voltar para Cardápio",
           icon: Icon(Icons.arrow_back, size: 35, color: Colors.deepOrange),
         ),
       ),

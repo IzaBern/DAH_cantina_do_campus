@@ -92,13 +92,13 @@ class FoodCard extends StatelessWidget {
             SizedBox(height: 15),
             Row(
               children: [
-                Icon(Icons.whatshot_outlined),
+                Icon(Icons.whatshot_outlined, color: Colors.deepOrange),
                 SizedBox(width: 5),
-                Text("640 kcal"),
-                SizedBox(width: 15),
-                Icon(Icons.access_time_outlined),
+                Text("640 kcal", style: TextStyle(fontWeight: FontWeight(500))),
+                SizedBox(width: 20),
+                Icon(Icons.access_time_outlined, color: Colors.deepOrange),
                 SizedBox(width: 5),
-                Text("15 min"),
+                Text("15 min", style: TextStyle(fontWeight: FontWeight(500))),
               ],
             ),
             SizedBox(height: 15),
