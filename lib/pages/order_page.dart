@@ -132,14 +132,7 @@ class OrderPage extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: OrderCard(),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: OrderCard(),
-          ),
+          
         ],
       ),
       bottomNavigationBar: Padding(

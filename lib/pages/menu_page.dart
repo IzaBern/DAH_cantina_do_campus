@@ -1,11 +1,16 @@
+import 'package:cantina/core/data/food_data.dart';
 import 'package:cantina/core/service_locator.dart';
 import 'package:cantina/store/navigation_store.dart';
+import 'package:cantina/store/order_store.dart';
 import 'package:cantina/widgets/food_card.dart';
+import 'package:cantina/widgets/top_menu_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class MenuPage extends StatelessWidget {
   new({super.key});
   var storePage = getIt<NavigationStore>();
+  final storeOrder = getIt<OrderStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,75 +28,41 @@ class MenuPage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
-            child: Badge.count(
-              count: 10,
-              backgroundColor: Colors.deepOrange,
-              child: IconButton(
-                onPressed: () {
-                  storePage.goToOrder();
-                },
-                tooltip: "Ir para Meu Pedido",
-                icon: Icon(
-                  Icons.receipt_long_sharp,
-                  size: 35,
-                  color: Colors.deepOrange,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 130,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Card(
-                color: Colors.deepOrange,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Icon(Icons.flatware, size: 50, color: Colors.white),
-                      SizedBox(width: 30),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Cardápio de hoje",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight(600),
-                            ),
-                          ),
-                          Text(
-                            "Escolha seus itens e monte o pedido.",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
+            child: Observer(
+              builder: (_) => Badge.count(
+                count: storeOrder.itens.length,
+                backgroundColor: Colors.deepOrange,
+                child: IconButton(
+                  onPressed: () => storePage.goToOrder(),
+                  tooltip: "Ir para Meu Pedido",
+                  icon: Icon(
+                    Icons.receipt_long_sharp,
+                    size: 35,
+                    color: Colors.deepOrange,
                   ),
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: FoodCard(),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-            child: FoodCard(),
-          ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(90.0),
+          child: TopMenuCard(),
+        ),
+      ),
+      body: ListView.builder(
+        itemCount: foodlist.length,
+        itemBuilder: (c, i) {
+          var f = foodlist[i];
+          return FoodCard(
+            food: f,
+            onAdd: () {
+              getIt<OrderStore>().addFood(f);
+              var store = getIt<OrderStore>();
+              store.addFood(f);
+            },
+          );
+        },
       ),
     );
   }
