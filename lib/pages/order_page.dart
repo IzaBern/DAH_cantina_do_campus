@@ -1,9 +1,12 @@
+import 'package:cantina/core/service_locator.dart';
+import 'package:cantina/store/navigation_store.dart';
 import 'package:cantina/widgets/food_card.dart';
 import 'package:cantina/widgets/order_card.dart';
 import 'package:flutter/material.dart';
 
 class OrderPage extends StatelessWidget {
-  const new({super.key});
+  new({super.key});
+  NavigationStore storePage = getIt<NavigationStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class OrderPage extends StatelessWidget {
           ),
         ],
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            storePage.goToMenu();
+          },
           tooltip: "Voltar para Cardápio",
           icon: Icon(Icons.arrow_back, size: 35, color: Colors.deepOrange),
         ),

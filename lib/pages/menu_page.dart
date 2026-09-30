@@ -1,8 +1,11 @@
+import 'package:cantina/core/service_locator.dart';
+import 'package:cantina/store/navigation_store.dart';
 import 'package:cantina/widgets/food_card.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
-  const new({super.key});
+  new({super.key});
+  var storePage = getIt<NavigationStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,9 @@ class MenuPage extends StatelessWidget {
               count: 10,
               backgroundColor: Colors.deepOrange,
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  storePage.goToOrder();
+                },
                 tooltip: "Ir para Meu Pedido",
                 icon: Icon(
                   Icons.receipt_long_sharp,
