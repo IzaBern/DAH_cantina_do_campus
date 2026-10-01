@@ -3,6 +3,7 @@ import 'package:cantina/models/order_item.dart';
 import 'package:cantina/store/order_store.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class OrderCard extends StatelessWidget {
   OrderCard({super.key, required this.item});
   OrderItem item;

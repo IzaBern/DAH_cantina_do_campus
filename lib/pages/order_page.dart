@@ -1,15 +1,13 @@
 import 'package:cantina/core/service_locator.dart';
-import 'package:cantina/models/order_item.dart';
 import 'package:cantina/store/navigation_store.dart';
 import 'package:cantina/store/order_store.dart';
-import 'package:cantina/widgets/food_card.dart';
 import 'package:cantina/widgets/order_card.dart';
 import 'package:cantina/widgets/order_clean.dart';
 import 'package:cantina/widgets/top_order_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
+// ignore: must_be_immutable
 class OrderPage extends StatelessWidget {
   OrderPage({super.key});
   NavigationStore storePage = getIt<NavigationStore>();

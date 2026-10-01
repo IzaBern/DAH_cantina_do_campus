@@ -7,6 +7,7 @@ import 'package:cantina/widgets/top_menu_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+// ignore: must_be_immutable
 class MenuPage extends StatelessWidget {
   new({super.key});
   var storePage = getIt<NavigationStore>();

@@ -1,9 +1,9 @@
 import 'package:cantina/core/service_locator.dart';
-import 'package:cantina/models/order_item.dart';
 import 'package:cantina/store/order_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+// ignore: must_be_immutable
 class TopOrderCard extends StatelessWidget {
   TopOrderCard({super.key});
   OrderStore store = getIt<OrderStore>();

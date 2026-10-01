@@ -2,6 +2,7 @@ import 'package:cantina/core/service_locator.dart';
 import 'package:cantina/store/navigation_store.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class OrderClean extends StatelessWidget {
   OrderClean({super.key});
   NavigationStore storePage = getIt<NavigationStore>();
@@ -28,7 +29,7 @@ class OrderClean extends StatelessWidget {
           icon: Icon(Icons.arrow_back, size: 35, color: Colors.deepOrange),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
