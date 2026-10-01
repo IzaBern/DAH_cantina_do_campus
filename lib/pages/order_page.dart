@@ -1,12 +1,18 @@
 import 'package:cantina/core/service_locator.dart';
+import 'package:cantina/models/order_item.dart';
 import 'package:cantina/store/navigation_store.dart';
+import 'package:cantina/store/order_store.dart';
 import 'package:cantina/widgets/food_card.dart';
 import 'package:cantina/widgets/order_card.dart';
+import 'package:cantina/widgets/top_order_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 
 class OrderPage extends StatelessWidget {
-  new({super.key});
+  OrderPage({super.key});
   NavigationStore storePage = getIt<NavigationStore>();
+  OrderStore storeOrder = getIt<OrderStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class OrderPage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => storeOrder.removeAll(),
             tooltip: "Excluir todos os pedidos",
             icon: Icon(
               Icons.delete_sweep_outlined,
@@ -40,100 +46,20 @@ class OrderPage extends StatelessWidget {
           tooltip: "Voltar para Cardápio",
           icon: Icon(Icons.arrow_back, size: 35, color: Colors.deepOrange),
         ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(150),
+          child: TopOrderCard(),
+        ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Card(
-              color: Colors.deepOrange,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "Itens",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight(600),
-                          ),
-                        ),
-                        Text(
-                          "10",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight(700),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Icon(
-                          Icons.access_time_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "Preparo",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight(600),
-                          ),
-                        ),
-                        Text(
-                          "15 min",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight(700),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Icon(
-                          Icons.paid_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          "Total",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight(600),
-                          ),
-                        ),
-                        Text(
-                          "R\$ 30.00",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight(700),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          
-        ],
+      body: Observer(
+        builder: (_) => (storeOrder.itens.isNotEmpty)
+            ? ListView.builder(
+                itemCount: storeOrder.itens.length,
+                itemBuilder: (c, i) {
+                  return OrderCard(item: storeOrder.itens[i]);
+                },
+              )
+            : SizedBox(),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
@@ -154,7 +80,14 @@ class OrderPage extends StatelessWidget {
                 SizedBox(width: 10),
                 Text("•", style: TextStyle(fontSize: 18)),
                 SizedBox(width: 10),
-                Text("R\$ 30.00", style: TextStyle(fontSize: 18)),
+                Observer(
+                  builder: (_) {
+                    return Text(
+                      "R\$ ${storeOrder.totalPrice.toStringAsFixed(2)}",
+                      style: TextStyle(fontSize: 18),
+                    );
+                  },
+                ),
               ],
             ),
           ),

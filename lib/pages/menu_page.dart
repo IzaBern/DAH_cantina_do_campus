@@ -30,7 +30,7 @@ class MenuPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 10, 20, 0),
             child: Observer(
               builder: (_) => Badge.count(
-                count: storeOrder.itens.length,
+                count: storeOrder.totalItens,
                 backgroundColor: Colors.deepOrange,
                 child: IconButton(
                   onPressed: () => storePage.goToOrder(),

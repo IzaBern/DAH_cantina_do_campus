@@ -36,31 +36,45 @@ abstract class _OrderStoreBase with Store {
     return itens.fold(0, (acumulador, item) => acumulador + item.subtotal);
   }
 
+  @computed
+  int get totalItens {
+    return itens.fold(0, (acumulador, item) => acumulador + item.quantity);
+  }
+
+  @computed
+  int get maxTime {
+    var time = 0;
+    for (var item in itens) {
+      if (item.food.time > time) {
+        time = item.food.time;
+      }
+    }
+    return time;
+  }
+
   @action
-  void remove(OrderItem item){
+  void remove(OrderItem item) {
     itens.removeWhere((c) => c.food.id == item.food.id);
   }
 
   @action
-  void removeOne(OrderItem item){
-    final index = itens.indexWhere((i)=> i.food.id == item.food.id);
+  void removeOne(OrderItem item) {
+    final index = itens.indexWhere((i) => i.food.id == item.food.id);
 
-    if(index==-1){
+    if (index == -1) {
       return;
     }
 
-    if(itens[index].quantity == 1){
+    if (itens[index].quantity == 1) {
       itens.removeAt(index);
       return;
     }
 
     itens[index] = itens[index].decreaseQuantity();
-
   }
 
   @action
-  void removeAll(){
+  void removeAll() {
     itens.clear();
   }
-
 }

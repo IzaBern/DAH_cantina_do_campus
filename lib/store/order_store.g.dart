@@ -16,6 +16,20 @@ mixin _$OrderStore on _OrderStoreBase, Store {
     () => super.totalPrice,
     name: '_OrderStoreBase.totalPrice',
   )).value;
+  Computed<int>? _$totalItensComputed;
+
+  @override
+  int get totalItens => (_$totalItensComputed ??= Computed<int>(
+    () => super.totalItens,
+    name: '_OrderStoreBase.totalItens',
+  )).value;
+  Computed<int>? _$maxTimeComputed;
+
+  @override
+  int get maxTime => (_$maxTimeComputed ??= Computed<int>(
+    () => super.maxTime,
+    name: '_OrderStoreBase.maxTime',
+  )).value;
 
   late final _$_OrderStoreBaseActionController = ActionController(
     name: '_OrderStoreBase',
@@ -73,7 +87,9 @@ mixin _$OrderStore on _OrderStoreBase, Store {
   @override
   String toString() {
     return '''
-totalPrice: ${totalPrice}
+totalPrice: ${totalPrice},
+totalItens: ${totalItens},
+maxTime: ${maxTime}
     ''';
   }
 }
