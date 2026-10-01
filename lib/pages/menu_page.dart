@@ -60,6 +60,14 @@ class MenuPage extends StatelessWidget {
               getIt<OrderStore>().addFood(f);
               var store = getIt<OrderStore>();
               store.addFood(f);
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text("${f.name} adicionado ao pedido."),
+                    duration: Duration(milliseconds: 850),
+                  ),
+                );
             },
           );
         },
