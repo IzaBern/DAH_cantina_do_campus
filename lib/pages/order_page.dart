@@ -76,7 +76,97 @@ class OrderPage extends StatelessWidget {
                         Colors.deepOrange, // Sets the background color
                     foregroundColor: Colors.white, // Sets the text/icon color
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          backgroundColor: Colors.amber[100],
+                          title: Text(
+                            "Pedido enviado!",
+                            style: TextStyle(
+                              fontWeight: FontWeight(700),
+                              color: Colors.deepOrange,
+                            ),
+                          ),
+                          content: SizedBox(
+                            height: 120,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Itens:",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      storeOrder.totalItens.toString(),
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight(700),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Total:",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "R\$ ${storeOrder.totalPrice.toStringAsFixed(2)}",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight(700),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Preparo:",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "${storeOrder.maxTime} min",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight(700),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                storeOrder.removeAll();
+                              },
+                              child: Text(
+                                "OK",
+                                style: TextStyle(
+                                  fontWeight: FontWeight(700),
+                                  color: Colors.deepOrange,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
